@@ -1,4 +1,4 @@
-var config = require('./dbconfig');
+var config = require('../dbconfig');
 const sql = require('mssql/msnodesqlv8')
 
 async function getUtilisateurs() {
