@@ -1,4 +1,5 @@
 const dboperations = require('./dboperations');
+const client_operations = require('./clients/client_operation');
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -38,6 +39,64 @@ router.route('/societes/:id').get((request, response) => {
         response.json(result);
     })
 })
+///////////////////////////////////////////////////////////////
+//////////////////////// CLIENT ///////////////////////////////
+///////////////////////////////////////////////////////////////
+
+
+
+// lecture
+router.route('/clients').get((request, response) => {
+    client_operations.getClients().then(result => {
+        response.json(result);
+    })
+})
+
+//lecture 1
+router.route('/clients/:id').get((request, response) => {
+    client_operations.getClient(request.params.id).then(result => {
+        response.json(result);
+    })
+})
+
+//insertion
+router.route('/insert_client').post((request, response) => {
+    let client = { ...request.body }
+    client_operations.addClient(client).then(result => {
+        response.status(201).json(result);
+    })
+})
+
+//update 1
+router.route('/update_client').post((request, response) => {
+    let client = { ...request.body }
+    client_operations.updateClient(client).then(result => {
+        response.json(result);
+    })
+})
+
+//delete 1
+router.route('/delete_client/:id').post((request, response) => {
+    client_operations.deleteClient(request.params.id).then(result => {
+        response.json(result);
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var port = process.env.PORT || 8090;
 app.listen(port);
