@@ -46,8 +46,10 @@ router.route('/societes/:id').get((request, response) => {
 
 
 // lecture
-router.route('/clients').get((request, response) => {
-    client_operations.getClients().then(result => {
+router.route('/:database/clients').get((request, response) => {
+    // console.log(request.params.database);
+
+    client_operations.getClients(request.params.database).then(result => {
         response.json(result);
     })
 })
