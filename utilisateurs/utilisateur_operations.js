@@ -77,10 +77,9 @@ async function getSocietes(IdClients) {
     try {
         let pool = await sql.connect(config);
         var cmd = `select nom, code from ${config_commun6.database}.dbo.societe`;
-        let result = await pool.request().query(cmd); // use await here to wait for the query to complete
+        let result = await pool.request().query(cmd);
         console.log(result);
 
-        // do not close the connection here, leave it open for the connection pool to manage
         return result.recordset;
     }
     catch (error) {
