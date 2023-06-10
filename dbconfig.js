@@ -30,7 +30,7 @@ config = {
 }
 */
 
-function dbconfig(database){
+function dbconfig(database) {
     const interfaces = os.networkInterfaces();
     const addresses = [];
     for (const k in interfaces) {
@@ -43,44 +43,45 @@ function dbconfig(database){
     }
     if (addresses != '178.238.238.52') {
         server = 'DESKTOP-KRHHQLB\\SQLEXPRESS';
-    }else{
-        server = 'M4769\\OMAG';
+    } else {
+        server = 'BILAL\\SQLOMAG';
     }
 
 
-   return config = {
-    database: database, 
-    server: server,
-    driver: 'msnodesqlv8',
-    options:{
-        trustedConnection : true
-    }
-};
+    return config = {
+        database: database,
+        server: 'BILAL\\SQLOMAG',
+        driver: 'msnodesqlv8',
+        options: {
+            trustedConnection: true
+        }
+    };
 }
 
 
 
-function cleanObject (list) {
+function cleanObject(list) {
     if (Array.isArray(list)) {
         list.forEach(obj => {
             Object.keys(obj).forEach(item => {
-        if (typeof obj[item] === 'string') {
-            obj[item] = obj[item].replace(/'/g, "''");
-        }
-     }
-    )});
-    }else {
+                if (typeof obj[item] === 'string') {
+                    obj[item] = obj[item].replace(/'/g, "''");
+                }
+            }
+            )
+        });
+    } else {
         Object.keys(list).forEach(item => {
             if (typeof list[item] === 'string') {
                 list[item] = list[item].replace(/'/g, "''");
             }
-         }
+        }
         )
     }
     return list;
 }
 
 module.exports = {
-    dbconfig:dbconfig,
-    cleanObject : cleanObject
+    dbconfig: dbconfig,
+    cleanObject: cleanObject
 };

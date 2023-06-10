@@ -20,7 +20,7 @@ router.route('/clients/:db').get((request, response) => {
 async function clients(db) {
     try {
         let pool = await sql.connect(config);
-        cmd = `select code_client, nom, adresse, tel, IDville
+        cmd = `select code_client, nom, adresse, tel, IDvill
         from [${db}].dbo.client`;
 
         let result = pool.request().query(cmd);
@@ -46,7 +46,7 @@ router.route('/clientParCodeClient/:db/:id').get((request, response) => {
 async function clientParCodeClient(db, id) {
     try {
         let pool = await sql.connect(config);
-        cmd = `select code_client, nom, adresse, tel, IDville
+        cmd = `select code_client, nom, adresse, tel, IDvill
         from [${db}].dbo.client
         where code_client = '${id}'`;
         let result = pool.request().query(cmd);
@@ -73,7 +73,7 @@ async function ClientAjouter(db, licences) {
     licences = cleanObject(licences);
     try {
         let pool = await sql.connect(config);
-        var cmd = `insert into [${db}].dbo.client (code_client, nom, adresse, tel, IdVille) 
+        var cmd = `insert into [${db}].dbo.client (code_client, nom, adresse, tel, IdVill) 
                 values  ('${client.code_client}', '${client.Nom}', '${client.Adresse}', '${client.Telephone}', ${client.IdVille})`;
         let result = pool.request().query(cmd);
 
@@ -99,7 +99,7 @@ async function ClientModifier(db, client) {
     try {
         let pool = await sql.connect(config);
         var cmd = `UPDATE [${db}].dbo.client 
-                 SET nom = '${client.nom}', adresse = '${client.adresse}', tel = '${client.tel}', IdVille = ${client.IDville}
+                 SET nom = '${client.nom}', adresse = '${client.adresse}', tel = '${client.tel}', IdVill = ${client.IDville}
                  WHERE code_client = '${client.code_client}';`;
         let result = pool.request().query(cmd);
 

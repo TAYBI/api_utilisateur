@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-const licences_routes =  require('./licences');
-const omag_clt_routes =  require('./omag_clt');
-const version_routes =  require('./version');
-const pointage_routes =  require('./pointage');
-const gms_routes =  require('./gms');
-const clientsRoutes =  require('./clients');
+const licences_routes = require('./licences');
+const omag_clt_routes = require('./omag_clt');
+const version_routes = require('./version');
+const pointage_routes = require('./pointage');
+const gms_routes = require('./gms');
+const clientsRoutes = require('./clients');
+const utilisateur_sRoutes = require('./utilisateur');
 
 
 
@@ -22,6 +23,7 @@ app.use('/api', omag_clt_routes);
 app.use('/api', version_routes);
 app.use('/api', pointage_routes);
 app.use('/api', clientsRoutes);
+app.use('/api', utilisateur_sRoutes);
 
 app.use('/api', gms_routes);
 
@@ -33,4 +35,4 @@ app.listen(port);
 console.log('API is runnning at ' + port);
 
 
-module.exports = {database:global.nom_db}
+module.exports = { database: global.nom_db }
