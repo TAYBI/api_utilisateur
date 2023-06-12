@@ -88,7 +88,7 @@ async function ClientAjouter(db, licences) {
 router.post('/ClientModifier/:db', (request, response) => {
     db = request.params.db
     let client = { ...request.body }
-
+    console.log(client);
     ClientModifier(db, client).then(result => {
         response.status(201).json(result);
     })
@@ -99,10 +99,10 @@ async function ClientModifier(db, client) {
     try {
         let pool = await sql.connect(config);
         var cmd = `UPDATE [${db}].dbo.client 
-                 SET nom = '${client.nom}', adresse = '${client.adresse}', tel = '${client.tel}', IdVill = ${client.IDville}
+                 SET nom = '${client.nom}', adresse = '${client.adresse}', tel = '${client.tel}', IdVill = ${client.IDvill}
                  WHERE code_client = '${client.code_client}';`;
         let result = pool.request().query(cmd);
-
+        console.log(cmd);
         return (await result).recordset
     }
     catch (error) {
